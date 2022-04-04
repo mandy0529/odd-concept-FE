@@ -1,0 +1,6 @@
+const ON_LOADING = 'ON_LOADING';
+const OFF_LOADING = 'OFF_LOADING';
+
+const GET_DATA = 'GET_DATA';
+
+export {GET_DATA, ON_LOADING, OFF_LOADING};

@@ -10,4 +10,10 @@ export const Wrapper = styled.div`
       cursor: pointer;
     }
   }
+  @media screen and (max-width: 900px) {
+    margin: 1.5rem;
+    img {
+      width: 80px;
+    }
+  }
 `;
