@@ -1,11 +1,7 @@
 import React from 'react';
-import {Info, Loader, Products, Search} from '../components';
-import {useGlobalContext} from '../context/AppContext';
+import {Info, Products, Search} from '../components';
 
 function Home() {
-  const {isLoading} = useGlobalContext();
-  if (isLoading) return <Loader />;
-
   return (
     <div>
       <Info />

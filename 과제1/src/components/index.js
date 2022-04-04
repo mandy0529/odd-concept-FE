@@ -8,6 +8,7 @@ import Search from './Home/Search';
 // product
 import Products from './Product/Products';
 import ProductItem from './Product/ProductItem';
+import SingleProduct from './Product/SingleProduct';
 
 // page button
 import PageButton from './Product/PageButton';
@@ -17,4 +18,14 @@ import Loader from './Loader';
 // error
 import Error from './Error';
 
-export {Header, Info, Search, Products, ProductItem, Loader, Error, PageButton};
+export {
+  Header,
+  Info,
+  Search,
+  Products,
+  SingleProduct,
+  ProductItem,
+  Loader,
+  Error,
+  PageButton,
+};

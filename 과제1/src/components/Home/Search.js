@@ -1,23 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useGlobalContext} from '../../context/AppContext';
 import {Wrapper} from '../../styles/Home/Search.styles';
 
 function Search() {
-  const {handleSubmit, handleInput} = useGlobalContext();
+  const {handleSubmit, handleInput, query} = useGlobalContext();
+  const searchValue = React.useRef();
+
+  useEffect(() => {
+    searchValue.current.focus();
+  }, []);
+
   return (
     <Wrapper>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
-          className="text"
-          type="input"
-          placeholder="IMAGE URL or KEYWORD"
-        />
-        <input
           onChange={(e) => handleInput(e)}
-          className="submit"
-          type="submit"
-          value="검색"
+          value={query}
+          className="text"
+          type="text"
+          placeholder="IMAGE URL or KEYWORD"
+          ref={searchValue}
         />
+        <input className="submit" type="submit" value="검색" />
       </form>
     </Wrapper>
   );

@@ -3,7 +3,7 @@ import {useGlobalContext} from '../../context/AppContext';
 import {Wrapper} from '../../styles/Product/PageButton.styles';
 
 function PageButton() {
-  const {products, page, controlPage, handlePage} = useGlobalContext();
+  const {filtered_products, page, controlPage, handlePage} = useGlobalContext();
   return (
     <Wrapper className="btn-container">
       <button
@@ -13,7 +13,7 @@ function PageButton() {
       >
         prev
       </button>
-      {products.map((item, index) => {
+      {filtered_products.map((_, index) => {
         return (
           <button
             key={index}

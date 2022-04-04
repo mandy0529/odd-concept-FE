@@ -1,26 +1,28 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useGlobalContext} from '../../context/AppContext';
 import {Wrapper} from '../../styles/Product/Products.styles';
-import {Error, ProductItem, PageButton} from '../index';
+import Error from '../Error';
+import {ProductItem, PageButton} from '../index';
+import Loader from '../Loader';
+import Minji from '../Minji';
 
 function Products() {
-  const [pagedProducts, setPagedProducts] = useState([]);
+  const {filtered_products, page, isLoading, minji} = useGlobalContext();
 
-  const {products, page, isLoading} = useGlobalContext();
+  if (isLoading) return <Loader />;
 
-  useEffect(() => {
-    if (isLoading) return;
-    setPagedProducts(products[page]);
-  }, [isLoading, page]);
+  if (minji.length > 0) return <Minji />;
+
+  const currentPage = filtered_products[page];
+  if (currentPage === undefined) return <Error />;
 
   return (
     <Wrapper>
-      <div>{pagedProducts.length === 0 && <Error />}</div>
-      {pagedProducts &&
-        pagedProducts.map((item, index) => {
-          return <ProductItem key={index} {...item} />;
+      {currentPage &&
+        currentPage.map((item, index) => {
+          return <ProductItem key={index} singleItem={item} />;
         })}
-      {!isLoading && <PageButton />}
+      {currentPage.length > 0 && <PageButton />}
     </Wrapper>
   );
 }
