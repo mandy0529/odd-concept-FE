@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 5rem;
+  .message {
+    display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+  }
+  .search__form {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+  }
   form {
     .text {
       box-shadow: 1px 2px 14px -7px rgba(10, 10, 10, 0.75);
@@ -15,16 +22,37 @@ export const Wrapper = styled.div`
       border-radius: 10px;
     }
     .submit {
-      margin: 0 2rem;
+      margin: 0 1rem;
       font-size: 1.4rem;
       padding: 0.8rem 1.5rem;
-      background: var(--main-grey);
+      background: var(--main-green);
       border-radius: 10px;
+      transition: all 0.3s linear;
+      &:hover {
+        transform: scale(0.96);
+        cursor: pointer;
+        color: white;
+      }
+    }
+  }
+  .reset {
+    margin: 0 1rem;
+    font-size: 1.4rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--main-blue);
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    &:hover {
+      transform: scale(0.96);
+      cursor: pointer;
+      color: white;
     }
   }
   @media screen and (max-width: 900px) {
-    margin-top: 3rem;
-    flex-direction: column;
+    .search__form {
+      margin-top: 3rem;
+      flex-direction: column;
+    }
     form {
       width: 250px;
       min-width: 250px;
@@ -36,6 +64,11 @@ export const Wrapper = styled.div`
         font-size: 1.2rem;
         padding: 0.3rem 1rem;
       }
+    }
+    .reset {
+      width: 70px;
+      font-size: 1.2rem;
+      padding: 0.5rem 0;
     }
   }
 `;

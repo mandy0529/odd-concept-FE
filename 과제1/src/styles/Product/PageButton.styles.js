@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+
   .btn {
     padding: 0.35rem 0.75rem;
     letter-spacing: 1.6px;
     font-size: 0.75rem;
-    color: var(--clr-white);
-    background: var(--clr-primary-5);
     border-radius: var(--radius);
     border-color: transparent;
     text-transform: uppercase;
@@ -14,15 +15,9 @@ export const Wrapper = styled.div`
     cursor: pointer;
   }
 
-  .btn-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
   .page-btn {
     width: 2rem;
     height: 2rem;
-    background: var(--clr-primary-7);
     border-color: transparent;
     border-radius: 5px;
     cursor: pointer;
@@ -30,7 +25,7 @@ export const Wrapper = styled.div`
     transition: var(--transition);
   }
   .active-btn {
-    background: grey;
+    background: var(--main-green);
     color: white;
   }
   .prev-btn,
@@ -45,10 +40,8 @@ export const Wrapper = styled.div`
     cursor: pointer;
   }
 
-  @media screen and (min-width: 775px) {
-    .btn-container {
-      margin: 0 auto;
-      max-width: 700px;
-    }
+  @media screen and (min-width: 900px) {
+    margin: 0 auto;
+    max-width: 700px;
   }
 `;

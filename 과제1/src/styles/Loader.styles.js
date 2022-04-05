@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  margin: 15rem auto;
+  margin: 7rem auto;
   text-align: center;
   img {
     width: 100px;

@@ -4,6 +4,9 @@ export const Wrapper = styled.div`
   .product__item {
     margin: 0.5rem;
     transition: all 0.3s linear;
+    display: flex;
+    flex-direction: column;
+
     .product__info {
       margin-top: 0.5rem;
     }

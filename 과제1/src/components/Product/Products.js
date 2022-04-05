@@ -1,28 +1,31 @@
 import React from 'react';
 import {useGlobalContext} from '../../context/AppContext';
 import {Wrapper} from '../../styles/Product/Products.styles';
-import Error from '../Error';
-import {ProductItem, PageButton} from '../index';
-import Loader from '../Loader';
-import Minji from '../Minji';
+import {ProductItem, PageButton, HomeInfo, Loader} from '../index';
+import Minji from './RegionProduct';
 
 function Products() {
-  const {filtered_products, page, isLoading, minji} = useGlobalContext();
+  const {filtered_products, page, isLoading, region_filtered_data} =
+    useGlobalContext();
 
   if (isLoading) return <Loader />;
 
-  if (minji.length > 0) return <Minji />;
+  if (region_filtered_data.length > 0) return <Minji />;
 
   const currentPage = filtered_products[page];
-  if (currentPage === undefined) return <Error />;
+  if (currentPage === undefined) return <HomeInfo />;
 
   return (
     <Wrapper>
-      {currentPage &&
-        currentPage.map((item, index) => {
-          return <ProductItem key={index} singleItem={item} />;
-        })}
-      {currentPage.length > 0 && <PageButton />}
+      <div className="product__item">
+        {currentPage &&
+          currentPage.map((item, index) => {
+            return <ProductItem key={index} singleItem={item} />;
+          })}
+      </div>
+      <div className="page__btn">
+        {currentPage.length > 0 && <PageButton />}
+      </div>
     </Wrapper>
   );
 }

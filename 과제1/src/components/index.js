@@ -12,11 +12,12 @@ import SingleProduct from './Product/SingleProduct';
 
 // page button
 import PageButton from './Product/PageButton';
+
 // loading
 import Loader from './Loader';
 
 // error
-import Error from './Error';
+import HomeInfo from './Home/HomeInfo';
 
 export {
   Header,
@@ -26,6 +27,6 @@ export {
   SingleProduct,
   ProductItem,
   Loader,
-  Error,
+  HomeInfo,
   PageButton,
 };
