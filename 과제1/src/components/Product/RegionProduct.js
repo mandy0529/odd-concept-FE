@@ -2,10 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useGlobalContext} from '../../context/AppContext';
 import {Wrapper} from '../../styles/Product/RegionProduct.styles';
 import {paginate} from '../../utils/helper';
-import Loader from '../Loader';
-import PageButton from './PageButton';
-import ProductItem from './ProductItem';
-import RegionProductItem from './RegionProductItem';
+import {RegionProductItem, ProductItem, Loader, PageButton} from '../index';
 
 function RegionProduct() {
   const [matchProduct, setMatchProduct] = useState([]);
@@ -20,14 +17,14 @@ function RegionProduct() {
   } = useGlobalContext();
 
   const matchingProducts = () => {
-    const minji = all_products.map((item) => item);
-    const gan = region_filtered_data.find((item) => item);
+    const products = all_products.map((item) => item);
+    const regionProducts = region_filtered_data.find((item) => item);
 
-    const tempProduct = minji.filter((item) => {
+    const tempProduct = products.filter((item) => {
       if (
-        item.category_names[0] === gan.category_names[0] &&
-        item.category_names[1] === gan.category_names[1] &&
-        item.category_names[2] === gan.category_names[2]
+        item.category_names[0] === regionProducts.category_names[0] &&
+        item.category_names[1] === regionProducts.category_names[1] &&
+        item.category_names[2] === regionProducts.category_names[2]
       ) {
         return item;
       }

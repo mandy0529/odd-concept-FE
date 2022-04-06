@@ -3,16 +3,12 @@ import {useGlobalContext} from '../../context/AppContext';
 import {Wrapper} from '../../styles/Product/PageButton.styles';
 
 function PageButton({matchProduct}) {
-  const {filtered_products, page, controlPage, handlePage} = useGlobalContext();
+  const {filtered_products, page, handlePage} = useGlobalContext();
+
   return (
     <Wrapper className="btn-container">
-      <button
-        data-type="prev"
-        onClick={(e) => controlPage(e)}
-        className="prev-btn"
-      >
-        prev
-      </button>
+      <p>page</p>
+
       {filtered_products &&
         filtered_products.map((_, index) => {
           return (
@@ -25,6 +21,7 @@ function PageButton({matchProduct}) {
             </button>
           );
         })}
+
       {matchProduct &&
         matchProduct.map((_, index) => {
           return (
@@ -37,13 +34,6 @@ function PageButton({matchProduct}) {
             </button>
           );
         })}
-      <button
-        data-type="next"
-        onClick={(e) => controlPage(e)}
-        className="next-btn"
-      >
-        next
-      </button>
     </Wrapper>
   );
 }

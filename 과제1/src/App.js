@@ -1,6 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {Header, SingleProduct} from './components';
-import {Home} from './pages';
+import {Header} from './components';
+import {Home, SingleProduct} from './pages';
 
 function App() {
   return (

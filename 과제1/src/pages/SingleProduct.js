@@ -1,9 +1,10 @@
 import React from 'react';
 import {Link, useParams} from 'react-router-dom';
-import {useGlobalContext} from '../../context/AppContext';
-import {Home} from '../../pages';
-import {Wrapper} from '../../styles/Product/SingleProduct.styles';
-import {formatPrice} from '../../utils/helper';
+
+import {useGlobalContext} from '../context/AppContext';
+import {Wrapper} from '../styles/Product/SingleProduct.styles';
+import {formatPrice} from '../utils/helper';
+import Home from './Home';
 
 function SingleProduct() {
   const {id} = useParams();

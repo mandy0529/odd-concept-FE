@@ -8,7 +8,8 @@ import Search from './Home/Search';
 // product
 import Products from './Product/Products';
 import ProductItem from './Product/ProductItem';
-import SingleProduct from './Product/SingleProduct';
+import RegionProduct from './Product/RegionProduct';
+import RegionProductItem from './Product/RegionProductItem';
 
 // page button
 import PageButton from './Product/PageButton';
@@ -19,14 +20,19 @@ import Loader from './Loader';
 // error
 import HomeInfo from './Home/HomeInfo';
 
+// msg
+import Msg from './Alert/Msg';
+
 export {
+  RegionProduct,
+  RegionProductItem,
   Header,
   Info,
   Search,
   Products,
-  SingleProduct,
   ProductItem,
   Loader,
   HomeInfo,
   PageButton,
+  Msg,
 };

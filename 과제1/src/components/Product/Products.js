@@ -1,8 +1,13 @@
 import React from 'react';
 import {useGlobalContext} from '../../context/AppContext';
 import {Wrapper} from '../../styles/Product/Products.styles';
-import {ProductItem, PageButton, HomeInfo, Loader} from '../index';
-import Minji from './RegionProduct';
+import {
+  ProductItem,
+  PageButton,
+  HomeInfo,
+  Loader,
+  RegionProduct,
+} from '../index';
 
 function Products() {
   const {
@@ -13,11 +18,10 @@ function Products() {
     region_filtered_data,
   } = useGlobalContext();
 
-  if (isLoading) return <Loader />;
-
-  if (region_filtered_data.length > 0) return <Minji />;
-
   const currentPage = filtered_products[page];
+
+  if (isLoading) return <Loader />;
+  if (region_filtered_data.length > 0) return <RegionProduct />;
   if (currentPage === undefined) return <HomeInfo />;
 
   return (

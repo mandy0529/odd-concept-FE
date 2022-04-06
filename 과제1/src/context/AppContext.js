@@ -29,6 +29,11 @@ const AppProvider = ({children}) => {
   const [query, setQuery] = useState('');
   const [matchedProducts, setMatchedProducts] = useState('');
 
+  /*
+  =============== 
+  products fetch
+  ===============
+  */
   const fetchData = async () => {
     dispatch({type: ON_LOADING});
     try {
@@ -61,6 +66,11 @@ const AppProvider = ({children}) => {
     }
   };
 
+  /*
+  =============== 
+  region data fetch
+  ===============
+  */
   const fetchRegionData = async () => {
     dispatch({type: REGION_ON_LOADING});
     try {
@@ -95,31 +105,24 @@ const AppProvider = ({children}) => {
     }
   };
 
-  const controlPage = (e) => {
-    const {type} = e.target.dataset;
-
-    setPage((oldPage) => {
-      let currentPage;
-      if (type === 'next') {
-        currentPage = oldPage + 1;
-        if (currentPage > state.filtered_products.length - 1) {
-          currentPage = 0;
-        }
-        return currentPage;
-      } else {
-        currentPage = oldPage - 1;
-        if (currentPage < 0) {
-          currentPage = state.filtered_products.length - 1;
-        }
-        return currentPage;
-      }
-    });
+  const controlRegion = (singleItem) => {
+    setMatchedProducts(singleItem);
   };
 
+  /*
+  =============== 
+  control page
+  ===============
+  */
   const handlePage = (index) => {
     setPage(index);
   };
 
+  /*
+  =============== 
+  control input
+  ===============
+  */
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query) {
@@ -140,6 +143,11 @@ const AppProvider = ({children}) => {
     setQuery(value);
   };
 
+  /*
+  =============== 
+  alert message
+  ===============
+  */
   const closeAlert = () => {
     dispatch({type: CLOSE_ALERT});
   };
@@ -148,10 +156,6 @@ const AppProvider = ({children}) => {
     setQuery('');
     dispatch({type: REMOVE_REGION});
     dispatch({type: HANDLE_RESET});
-  };
-
-  const controlRegion = (singleItem) => {
-    setMatchedProducts(singleItem);
   };
 
   useEffect(() => {
@@ -169,7 +173,6 @@ const AppProvider = ({children}) => {
         handleInput,
         handleSubmit,
         page,
-        controlPage,
         handlePage,
         query,
         closeAlert,

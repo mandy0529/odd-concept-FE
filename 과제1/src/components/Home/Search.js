@@ -5,11 +5,6 @@ import Msg from '../Alert/Msg';
 
 function Search() {
   const {handleSubmit, handleInput, query, message} = useGlobalContext();
-  const searchValue = React.useRef();
-
-  useEffect(() => {
-    searchValue.current.focus();
-  }, []);
 
   return (
     <Wrapper>
@@ -38,7 +33,6 @@ function Search() {
             className="text"
             type="text"
             placeholder="제품코드 or IMAGE URL or KEYWORD"
-            ref={searchValue}
           />
           <input className="submit" type="submit" value="검색" />
         </form>
