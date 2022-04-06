@@ -3,7 +3,7 @@ import AppReducer, {initialState} from '../reducer/AppReducer';
 import {API_PRODUCT, API_REGION} from '../utils/api';
 import {paginate} from '../utils/helper';
 import {
-  CATEGORY_PRODUCTS,
+  ASYNC_DATA_ERROR,
   CLOSE_ALERT,
   FILTERED_DATA,
   GET_ALL_DATA,
@@ -18,6 +18,7 @@ import {
   REGION_OFF_LOADING,
   REGION_ON_LOADING,
   REGION_PER_PAGE,
+  REMOVE_REGION,
 } from '../reducer/action';
 
 export const AppContext = React.createContext();
@@ -26,6 +27,7 @@ const AppProvider = ({children}) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
   const [page, setPage] = useState(0);
   const [query, setQuery] = useState('');
+  const [matchedProducts, setMatchedProducts] = useState('');
 
   const fetchData = async () => {
     dispatch({type: ON_LOADING});
@@ -37,7 +39,7 @@ const AppProvider = ({children}) => {
       dispatch({type: GET_ALL_DATA, payload: data});
       dispatch({type: PAGE_PER_DATA, payload: pageData});
     } catch (error) {
-      console.log(error);
+      dispatch({type: ASYNC_DATA_ERROR});
     } finally {
       dispatch({type: OFF_LOADING});
     }
@@ -68,7 +70,7 @@ const AppProvider = ({children}) => {
       dispatch({type: REGION_ALL_DATA, payload: data});
       dispatch({type: REGION_PER_PAGE, payload: pageData});
     } catch (error) {
-      console.log(error);
+      dispatch({type: ASYNC_DATA_ERROR});
     }
     dispatch({type: REGION_OFF_LOADING});
   };
@@ -88,38 +90,10 @@ const AppProvider = ({children}) => {
       dispatch({type: REGION_FILTERED_DATA, payload: filtered_products});
     } else {
       setQuery('');
+      setMatchedProducts('');
       dispatch({type: NO_DATA_ALERT});
     }
   };
-
-  // const categoryProducts = () => {
-  //   const filtered_products = state.all_products.map((item) => {
-  //     return item.category_names;
-  //   });
-
-  //   const tempFilter = paginate(filtered_products);
-  //   if (filtered_products.length > 0) {
-  //     dispatch({type: CATEGORY_PRODUCTS, payload: tempFilter});
-  //   } else {
-  //     setQuery('');
-  //     dispatch({type: NO_DATA_ALERT});
-  //   }
-  // };
-  // const matchingProduct = () => {
-  //   const matching_products = state.filtered_products.filter((item) => {
-  //     console.log(item.category_names, '@@@1');
-  //     const matching_category = item.category_names.map((item) => {
-  //       return item;
-  //     });
-  //     console.log(matching_category, '@@@2');
-  //     if (Array(item.category_names) === Array(matching_category)) {
-  //       console.log(item, '@@@@이건뭐');
-  //       return item;
-  //     }
-  //     return null;
-  //   });
-  //   console.log(matching_products, '@@@@matching products');
-  // };
 
   const controlPage = (e) => {
     const {type} = e.target.dataset;
@@ -151,7 +125,6 @@ const AppProvider = ({children}) => {
     if (query) {
       if (query.startsWith('http') || query.match(/^\d/)) {
         getRegionFilteredData();
-        // categoryProducts();
       } else {
         getFilteredData();
       }
@@ -173,7 +146,12 @@ const AppProvider = ({children}) => {
 
   const handleReset = () => {
     setQuery('');
+    dispatch({type: REMOVE_REGION});
     dispatch({type: HANDLE_RESET});
+  };
+
+  const controlRegion = (singleItem) => {
+    setMatchedProducts(singleItem);
   };
 
   useEffect(() => {
@@ -196,6 +174,8 @@ const AppProvider = ({children}) => {
         query,
         closeAlert,
         handleReset,
+        controlRegion,
+        matchedProducts,
       }}
     >
       {children}

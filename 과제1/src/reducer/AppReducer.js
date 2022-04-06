@@ -1,5 +1,5 @@
 import {
-  CATEGORY_PRODUCTS,
+  ASYNC_DATA_ERROR,
   CLOSE_ALERT,
   FILTERED_DATA,
   GET_ALL_DATA,
@@ -15,6 +15,7 @@ import {
   REGION_OFF_LOADING,
   REGION_ON_LOADING,
   REGION_PER_PAGE,
+  REMOVE_REGION,
 } from './action';
 
 export const initialState = {
@@ -87,7 +88,7 @@ const AppReducer = (state, action) => {
         message: {
           ...state.message,
           state: true,
-          msg: '검색한 검색어로는 정보가 없습니다. 다른 키워드나 image URL을 입력해주세요.',
+          msg: '검색한 검색어로는 정보가 없습니다. 조건에 맞는 검색어로 다시 입력해주세요.',
         },
         filtered_products: [],
       };
@@ -120,13 +121,21 @@ const AppReducer = (state, action) => {
         filtered_products: [],
       };
 
-    // case CATEGORY_PRODUCTS:
-    //   return {
-    //     ...state,
-    //     category_products: action.payload,
-    //     region_is_loading: false,
-    //   };
+    case REMOVE_REGION:
+      return {
+        ...state,
+        region_filtered_data: [],
+      };
 
+    case ASYNC_DATA_ERROR:
+      return {
+        ...state,
+        message: {
+          ...state.message,
+          state: true,
+          msg: '서버에서 데이터를 불러오지못했습니다. 새로고침하고 다시 접속해주세요.',
+        },
+      };
     default:
       return {...state};
   }

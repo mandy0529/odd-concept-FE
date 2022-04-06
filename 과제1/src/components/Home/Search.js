@@ -4,8 +4,7 @@ import {Wrapper} from '../../styles/Home/Search.styles';
 import Msg from '../Alert/Msg';
 
 function Search() {
-  const {handleSubmit, handleInput, query, message, handleReset} =
-    useGlobalContext();
+  const {handleSubmit, handleInput, query, message} = useGlobalContext();
   const searchValue = React.useRef();
 
   useEffect(() => {
@@ -20,19 +19,29 @@ function Search() {
 
       <div className="search__form">
         <form onSubmit={(e) => handleSubmit(e)}>
+          <p>
+            키워드 :{' '}
+            <strong>
+              #원피스 #조끼 #자켓 #바지 #코트 #점퍼 #니트 #스웨터 #블라우스
+              #가디건 #셔츠 #신발
+            </strong>
+          </p>
+          <p>
+            제품코드 : <strong>1 ~ 2601</strong>
+          </p>
+          <p>
+            Image URL :<strong> http로 시작하는 image url 전체 주소</strong>{' '}
+          </p>
           <input
             onChange={(e) => handleInput(e)}
             value={query}
             className="text"
             type="text"
-            placeholder="IMAGE URL or KEYWORD"
+            placeholder="제품코드 or IMAGE URL or KEYWORD"
             ref={searchValue}
           />
           <input className="submit" type="submit" value="검색" />
         </form>
-        <button onClick={handleReset} className="reset">
-          리셋
-        </button>
       </div>
     </Wrapper>
   );

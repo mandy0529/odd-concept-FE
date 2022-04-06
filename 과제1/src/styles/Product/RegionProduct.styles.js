@@ -1,16 +1,8 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  .product__item {
-    margin: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .page__btn {
-    margin-bottom: 3rem;
-  }
   .reset {
-    margin: 0 1rem;
+    margin: 2rem 7rem;
     font-size: 1.4rem;
     padding: 0.8rem 1.5rem;
     background: var(--main-blue);
@@ -22,14 +14,25 @@ export const Wrapper = styled.div`
       color: white;
     }
   }
-  @media screen and (max-width: 900px) {
-    .product__item {
-      justify-content: center;
+  .region_products {
+    display: flex;
+    margin: 2rem;
+    .region_products-item {
+      margin: 0 3rem 0 3rem;
     }
+    .region_products-product {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+  @media screen and (max-width: 900px) {
     .reset {
-      width: 70px;
+      margin: 1.2rem 3rem;
+      padding: 0.5rem 1rem;
       font-size: 1.2rem;
-      padding: 0.5rem 0;
+    }
+    .region_products {
+      flex-direction: column;
     }
   }
 `;

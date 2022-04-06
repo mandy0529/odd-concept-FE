@@ -5,8 +5,13 @@ import {ProductItem, PageButton, HomeInfo, Loader} from '../index';
 import Minji from './RegionProduct';
 
 function Products() {
-  const {filtered_products, page, isLoading, region_filtered_data} =
-    useGlobalContext();
+  const {
+    filtered_products,
+    handleReset,
+    page,
+    isLoading,
+    region_filtered_data,
+  } = useGlobalContext();
 
   if (isLoading) return <Loader />;
 
@@ -17,6 +22,10 @@ function Products() {
 
   return (
     <Wrapper>
+      <button onClick={handleReset} className="reset">
+        리셋
+      </button>
+
       <div className="product__item">
         {currentPage &&
           currentPage.map((item, index) => {
