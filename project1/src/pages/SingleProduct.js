@@ -24,7 +24,7 @@ function SingleProduct() {
   return (
     <Wrapper>
       <img src={findItem ? image_url : image} alt={findItem ? name : title} />
-      <div>
+      <div className="single__product">
         <h3>제품 이름 : {findItem ? name : title}</h3>
         <h4>제품 가격 : {formatPrice(findItem ? price : won)}</h4>
         <Link to="/">

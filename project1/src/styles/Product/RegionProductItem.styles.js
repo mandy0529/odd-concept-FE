@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
 
     .attributes__list {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
     }
     li {
       margin: 1rem 0;
@@ -42,10 +42,7 @@ export const Wrapper = styled.div`
     ul {
       border-bottom: 1px dotted black;
       margin-bottom: 3rem;
-      .attributes__list {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
+
       li {
         margin: 1rem 0;
         strong {
