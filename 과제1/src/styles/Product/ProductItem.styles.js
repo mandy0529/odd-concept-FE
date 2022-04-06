@@ -29,8 +29,8 @@ export const Wrapper = styled.div`
   @media screen and (max-width: 900px) {
     .product__item {
       img {
-        width: 300px;
-        height: 400px;
+        width: 200px;
+        height: 300px;
       }
     }
   }

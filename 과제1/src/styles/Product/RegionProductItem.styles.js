@@ -32,9 +32,26 @@ export const Wrapper = styled.div`
     }
   }
   @media screen and (max-width: 900px) {
+    img {
+      width: 200px;
+    }
+
+    span {
+      font-size: 0.8rem;
+    }
     ul {
       border-bottom: 1px dotted black;
       margin-bottom: 3rem;
+      .attributes__list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      li {
+        margin: 1rem 0;
+        strong {
+          font-size: 0.7rem;
+        }
+      }
     }
   }
 `;

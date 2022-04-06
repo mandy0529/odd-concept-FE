@@ -28,11 +28,19 @@ export const Wrapper = styled.div`
   @media screen and (max-width: 900px) {
     .reset {
       margin: 1.2rem 3rem;
-      padding: 0.5rem 1rem;
-      font-size: 1.2rem;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.8rem;
     }
     .region_products {
       flex-direction: column;
+
+      .region_products-product {
+        justify-content: center;
+        font-size: 0.8rem;
+      }
+    }
+    .region_products {
+      margin: 1.2rem;
     }
   }
 `;

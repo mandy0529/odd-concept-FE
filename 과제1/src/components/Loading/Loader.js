@@ -1,6 +1,6 @@
 import React from 'react';
-import {Wrapper} from '../styles/Loader.styles';
-import {logo} from '../utils/image';
+import {Wrapper} from '../../styles/Loading/Loader.styles';
+import {logo} from '../../utils/image';
 
 function Loader() {
   return (

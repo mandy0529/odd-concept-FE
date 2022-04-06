@@ -24,10 +24,9 @@ export const Wrapper = styled.div`
     }
   }
   @media screen and (max-width: 500px) {
-    margin: 12rem auto;
-    svg {
+    margin: 2rem auto;
+    img {
       width: 40px;
-      height: 40px;
     }
   }
 `;

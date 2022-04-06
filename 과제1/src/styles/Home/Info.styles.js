@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   }
   @media screen and (max-width: 900px) {
     p {
-      font-size: 1.6rem;
+      font-size: 1.3rem;
       line-height: 3rem;
 
       strong {

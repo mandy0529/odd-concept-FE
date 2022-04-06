@@ -12,6 +12,13 @@ export const Wrapper = styled.div`
     margin: 2rem;
   }
   form {
+    .search__info {
+      background: whitesmoke;
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      min-width: 300px;
+      margin: 1rem 0;
+    }
     p {
       margin: 0.3rem 0;
     }
@@ -22,6 +29,7 @@ export const Wrapper = styled.div`
       padding: 0.5rem 1.5rem;
       font-size: 1.2rem;
       width: 500px;
+
       border-radius: 10px;
     }
     .submit {
@@ -41,19 +49,25 @@ export const Wrapper = styled.div`
 
   @media screen and (max-width: 900px) {
     .search__form {
-      margin-top: 3rem;
+      margin-top: 1rem;
       flex-direction: column;
     }
     form {
       width: 250px;
       min-width: 250px;
+      .search__info {
+        margin: 0;
+      }
+      p {
+        font-size: 0.7rem;
+      }
       .text {
-        font-size: 1rem;
+        margin: 2rem 0 0 0;
+        font-size: 0.7rem;
+        max-width: 300px;
       }
       .submit {
-        margin: 1rem;
-        font-size: 1.2rem;
-        padding: 0.3rem 1rem;
+        display: none;
       }
     }
   }

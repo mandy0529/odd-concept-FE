@@ -28,7 +28,7 @@ export const Wrapper = styled.div`
     }
     .reset {
       width: 70px;
-      font-size: 1.2rem;
+      font-size: 1rem;
       padding: 0.5rem 0;
     }
   }

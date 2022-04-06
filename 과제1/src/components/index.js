@@ -4,6 +4,7 @@ import Header from './Header/Header';
 // home
 import Info from './Home/Info';
 import Search from './Home/Search';
+import HomeInfo from './Home/HomeInfo';
 
 // product
 import Products from './Product/Products';
@@ -15,10 +16,7 @@ import RegionProductItem from './Product/RegionProductItem';
 import PageButton from './Product/PageButton';
 
 // loading
-import Loader from './Loader';
-
-// error
-import HomeInfo from './Home/HomeInfo';
+import Loader from './Loading/Loader';
 
 // msg
 import Msg from './Alert/Msg';
