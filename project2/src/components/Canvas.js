@@ -1,32 +1,10 @@
 import React, {useState} from 'react';
-import Konva from 'konva';
-import {Layer, Rect, Stage, Text} from 'react-konva';
-import useStore from '../store';
-import {BaseImage, Regions} from './index';
-
-function getRelativePointerPosition(node) {
-  // the function will return pointer position relative to the passed node
-  const transform = node.getAbsoluteTransform().copy();
-  // to detect relative position we need to invert transform
-  transform.invert();
-
-  // get pointer (say mouse or touch) position
-  const pos = node.getStage().getPointerPosition();
-
-  // now we find relative point
-  return transform.point(pos);
-}
+import {Group, Layer, Rect, Stage, Text} from 'react-konva';
+import {BaseImage} from './index';
 
 function Canvas() {
   const [annotations, setAnnotations] = useState([]);
   const [newAnnotation, setNewAnnotation] = useState([]);
-  const [minji, setMinji] = useState('');
-
-  const regions = useStore((state) => state.regions);
-  const setRegions = useStore((state) => state.setRegions);
-
-  // const value = useStore((state) => state.value);
-  // const setValue = useStore((state) => state.setValue);
 
   const handleMouseDown = (event) => {
     if (newAnnotation.length === 0) {
@@ -40,6 +18,7 @@ function Canvas() {
       const sx = newAnnotation[0].x;
       const sy = newAnnotation[0].y;
       const {x, y} = event.target.getStage().getPointerPosition();
+
       setNewAnnotation([
         {
           x: sx,
@@ -64,20 +43,13 @@ function Canvas() {
         height: y - sy,
         key: annotations.length + 1,
       };
-      annotations.push(annotationToAdd);
       setNewAnnotation([]);
-      setAnnotations(annotations);
       const value = window.prompt('이름을 정해주세요');
-      setMinji(value);
-      console.log(minji, 'minji@@@1');
-      const point = getRelativePointerPosition(event.target.getStage());
-      const region = {
-        id: value,
-        color: Konva.Util.getRandomColor(),
-        points: [point],
-      };
-      setRegions(regions.concat([region]));
-      console.log(minji, 'minji@@@2');
+      const tempAnnotation = [
+        ...annotations,
+        {...annotationToAdd, minji: value},
+      ];
+      setAnnotations(tempAnnotation);
     }
   };
 
@@ -85,58 +57,29 @@ function Canvas() {
 
   return (
     <React.Fragment>
+      <div>
+        <h1>안녕</h1>
+        {annotationsToDraw.map((item) => {
+          return (
+            <div key={item.key}>
+              <li>{item.minji}</li>
+            </div>
+          );
+        })}
+      </div>
       <Stage
-        width={750}
+        width={700}
         height={700}
         className="canvas"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
-        // onClick={(e) => {
-        //   const clickedNotOnRegion = e.target.name() !== 'region';
-        //   if (clickedNotOnRegion) {
-        //     selectRegion(null);
-        //   }
-        // }}
-        // onMouseDown={(e) => {
-        //   toggleDrawing(true);
-        //   const point = getRelativePointerPosition(e.target.getStage());
-        //   const region = {
-        //     id: '김밍디id++',
-        //     color: Konva.Util.getRandomColor(),
-        //     points: [point],
-        //   };
-        //   setRegions(regions.concat([region]));
-        // }}
-        // onMouseMove={(e) => {
-        //   if (!isDrawing) {
-        //     return;
-        //   }
-        //   const lastRegion = {...regions[regions.length - 1]};
-        //   const point = getRelativePointerPosition(e.target.getStage());
-        //   lastRegion.points = lastRegion.points.concat([point]);
-        //   regions.splice(regions.length - 1, 1);
-        //   setRegions(regions.concat([lastRegion]));
-        // }}
-        // onMouseUp={(e) => {
-        //   if (!isDrawing) {
-        //     return;
-        //   }
-        //   const lastRegion = regions[regions.length - 1];
-        //   if (lastRegion.points.length < 3) {
-        //     regions.splice(regions.length - 1, 1);
-        //     setRegions(regions.concat());
-        //   }
-        //   const minji = window.prompt('이름을 정해주세요');
-        //   setMinji(minji);
-        //   toggleDrawing();
-        // }}
       >
         <BaseImage />
         <Layer>
           {annotationsToDraw.map((value) => {
             return (
-              <>
+              <Group key={value.key}>
                 <Rect
                   key={value.x}
                   x={value.x}
@@ -146,20 +89,18 @@ function Canvas() {
                   fill="transparent"
                   stroke="black"
                 />
-
                 <Text
                   x={value.x}
                   y={value.y}
                   width={value.width}
                   height={value.height}
                   verticalAlign="middle"
-                  text={`${minji ? minji : '이 제품은 무엇일까요 ?'}`}
+                  text={value.minji}
                 />
-              </>
+              </Group>
             );
           })}
         </Layer>
-        <Regions />
       </Stage>
     </React.Fragment>
   );
