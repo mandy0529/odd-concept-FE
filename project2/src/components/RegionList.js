@@ -12,14 +12,14 @@ const SortableItem = SortableElement(({region, sortIndex, onRemove}) => {
         border: `1px solid ${region.color}`,
       }}
     >
-      Region #{region.id}
-      <button
+      ✓ {region.id}
+      {/* <button
         onClick={() => {
-          onRemove(sortIndex);
+          onRemove(region.id);
         }}
       >
         Delete
-      </button>
+      </button> */}
     </div>
   );
 });
@@ -29,11 +29,11 @@ const SortableList = SortableContainer(({items, onRemove}) => {
     <div className="regions-list">
       {items.map((region, index) => (
         <SortableItem
-          key={`item-${region.id}`}
+          key={index}
           index={index}
           region={region}
-          onRemove={onRemove}
-          sortIndex={index}
+          // onRemove={onRemove}
+          // sortIndex={index}
         />
       ))}
     </div>
@@ -43,17 +43,16 @@ const SortableList = SortableContainer(({items, onRemove}) => {
 function RegionList() {
   const regions = useStore((s) => s.regions);
   const setRegions = useStore((s) => s.setRegions);
-
   return (
     <SortableList
       items={regions}
-      onSortEnd={({oldIndex, newIndex}) => {
-        setRegions(arrayMoveImmutable(regions, oldIndex, newIndex));
-      }}
-      onRemove={(index) => {
-        regions.splice(index, 1);
-        setRegions(regions.concat());
-      }}
+      // onSortEnd={({oldIndex, newIndex}) => {
+      //   setRegions(arrayMoveImmutable(regions, oldIndex, newIndex));
+      // }}
+      // onRemove={(index) => {
+      //   regions(index);
+      //   setRegions(regions.concat());
+      // }}
     />
   );
 }
