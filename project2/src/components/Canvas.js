@@ -13,7 +13,7 @@ function Canvas() {
     newPosition,
   } = useGlobalContext();
 
-  const itemsList = [...position, ...newPosition];
+  let itemsList = [...position, ...newPosition];
 
   return (
     <Wrapper>
@@ -28,8 +28,8 @@ function Canvas() {
         })}
       </div>
       <Stage
-        width={600}
-        height={720}
+        width={700}
+        height={800}
         className="canvas"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}

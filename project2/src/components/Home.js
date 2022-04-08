@@ -12,8 +12,10 @@ function Home() {
     <Wrapper>
       {isModal && <Modal />}
       <div className="home" style={{opacity: `${isModal ? 0.2 : 1}`}}>
-        <img src={LOGO} alt={LOGO} />
-        <h1>Artificial Intelligence PXL Position Selecting</h1>
+        <div className="home__info">
+          <img src={LOGO} alt={LOGO} />
+          <h1>Artificial Intelligence PXL Position Selecting</h1>
+        </div>
         <Canvas />
       </div>
     </Wrapper>

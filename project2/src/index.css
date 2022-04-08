@@ -16,9 +16,9 @@ body {
 h1 {
   text-align: center;
 }
-li {
+/* li {
   list-style: none;
-}
+} */
 input,
 button {
   outline: none;

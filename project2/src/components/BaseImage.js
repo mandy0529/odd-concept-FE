@@ -8,7 +8,7 @@ function BaseImage() {
 
   return (
     <Layer>
-      <Image image={image} width={600} height={700} />
+      <Image image={image} width={700} height={800} />
     </Layer>
   );
 }
