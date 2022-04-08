@@ -8,7 +8,9 @@ const AppProvider = ({children}) => {
   const [isModal, setIsModal] = useState(false);
   const [value, setValue] = useState('');
   const [addPosition, setAddPosition] = useState({});
+  const [msg, setMsg] = useState({state: false, message: ''});
 
+  // position setting
   const handleMouseDown = (event) => {
     if (newPosition.length === 0) {
       const {x, y} = event.target.getStage().getPointerPosition();
@@ -53,20 +55,43 @@ const AppProvider = ({children}) => {
     }
   };
 
+  // modal
   const closeModal = () => {
     setIsModal(false);
   };
 
+  // input
   const handleSubmit = (e) => {
     e.preventDefault();
     const addPositions = [...position, {...addPosition, text: value}];
-    setPosition(addPositions);
-    closeModal();
+    if (value) {
+      setPosition(addPositions);
+      closeModal();
+    } else {
+      controlMsg();
+    }
   };
 
   const handleChange = (e) => {
     const {value} = e.target;
     setValue(value);
+  };
+
+  // alert message
+  const controlMsg = () => {
+    setMsg({
+      ...msg,
+      state: true,
+      message: '제품 이름이 필요해요. 다시 입력해주세요',
+    });
+  };
+
+  const closeMsg = () => {
+    setMsg({
+      ...msg,
+      state: false,
+      message: '',
+    });
   };
 
   return (
@@ -85,6 +110,8 @@ const AppProvider = ({children}) => {
         handleSubmit,
         value,
         addPosition,
+        closeMsg,
+        msg,
       }}
     >
       {children}

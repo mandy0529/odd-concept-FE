@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  .home {
+    transition: all 0.1s linear;
+  }
   img {
     width: 130px;
     transition: all 0.3s linear;

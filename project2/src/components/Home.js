@@ -7,13 +7,15 @@ import Modal from './Modal.js';
 
 function Home() {
   const {isModal} = useGlobalContext();
-  if (isModal) return <Modal />;
 
   return (
     <Wrapper>
-      <img src={LOGO} alt={LOGO} />
-      <h1>Artificial Intelligence PXL Position Selecting</h1>
-      <Canvas />
+      {isModal && <Modal />}
+      <div className="home" style={{opacity: `${isModal ? 0.2 : 1}`}}>
+        <img src={LOGO} alt={LOGO} />
+        <h1>Artificial Intelligence PXL Position Selecting</h1>
+        <Canvas />
+      </div>
     </Wrapper>
   );
 }

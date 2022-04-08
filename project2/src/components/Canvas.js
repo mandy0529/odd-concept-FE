@@ -14,11 +14,12 @@ function Canvas() {
   } = useGlobalContext();
 
   const itemsList = [...position, ...newPosition];
-  console.log(itemsList, '@@@@itemlist');
+
   return (
     <Wrapper>
       <div>
-        {itemsList.map((item, index) => {
+        {itemsList.map((item) => {
+          if (!item.text) return null;
           return (
             <ul key={item.key}>
               <li>{item.text}</li>
@@ -27,7 +28,7 @@ function Canvas() {
         })}
       </div>
       <Stage
-        width={900}
+        width={600}
         height={720}
         className="canvas"
         onMouseDown={handleMouseDown}
