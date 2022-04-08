@@ -31,7 +31,8 @@ function Products() {
       </button>
 
       <div className="product__item">
-        {currentPage &&
+        {!isLoading &&
+          currentPage &&
           currentPage.map((item, index) => {
             return <ProductItem key={index} singleItem={item} />;
           })}

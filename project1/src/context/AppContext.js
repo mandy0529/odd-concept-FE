@@ -160,11 +160,11 @@ const AppProvider = ({children}) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     fetchRegionData();
-  }, []);
+  }, [page]);
 
   return (
     <AppContext.Provider

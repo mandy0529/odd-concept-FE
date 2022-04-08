@@ -43,7 +43,7 @@ function RegionProduct() {
 
   useEffect(() => {
     matchingProducts();
-  }, [query]);
+  }, [region_is_loading, query]);
 
   if (region_is_loading) return <Loader />;
 
