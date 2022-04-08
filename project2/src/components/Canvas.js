@@ -57,9 +57,10 @@ function Canvas() {
                   height={value.height}
                   verticalAlign="top"
                   text={value.text}
-                  fontSize={15}
+                  fontSize={18}
                   fontStyle="bold"
                   padding="10"
+                  fill="white"
                 />
               </Group>
             );
