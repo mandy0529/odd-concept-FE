@@ -1,75 +1,34 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Group, Layer, Rect, Stage, Text} from 'react-konva';
+import {useGlobalContext} from '../context/AppContext';
 import {BaseImage} from './index';
+import {Wrapper} from '../styles/Canvas.styles.js';
 
 function Canvas() {
-  const [annotations, setAnnotations] = useState([]);
-  const [newAnnotation, setNewAnnotation] = useState([]);
+  const {
+    handleMouseMove,
+    handleMouseDown,
+    handleMouseUp,
+    position,
+    newPosition,
+  } = useGlobalContext();
 
-  const handleMouseDown = (event) => {
-    if (newAnnotation.length === 0) {
-      const {x, y} = event.target.getStage().getPointerPosition();
-      setNewAnnotation([{x, y, width: 0, height: 0, key: '0'}]);
-    }
-  };
-
-  const handleMouseMove = (event) => {
-    if (newAnnotation.length === 1) {
-      const sx = newAnnotation[0].x;
-      const sy = newAnnotation[0].y;
-      const {x, y} = event.target.getStage().getPointerPosition();
-
-      setNewAnnotation([
-        {
-          x: sx,
-          y: sy,
-          width: x - sx,
-          height: y - sy,
-          key: '0',
-        },
-      ]);
-    }
-  };
-
-  const handleMouseUp = (event) => {
-    if (newAnnotation.length === 1) {
-      const sx = newAnnotation[0].x;
-      const sy = newAnnotation[0].y;
-      const {x, y} = event.target.getStage().getPointerPosition();
-      const annotationToAdd = {
-        x: sx,
-        y: sy,
-        width: x - sx,
-        height: y - sy,
-        key: annotations.length + 1,
-      };
-      setNewAnnotation([]);
-      const value = window.prompt('이름을 정해주세요');
-      const tempAnnotation = [
-        ...annotations,
-        {...annotationToAdd, minji: value},
-      ];
-      setAnnotations(tempAnnotation);
-    }
-  };
-
-  const annotationsToDraw = [...annotations, ...newAnnotation];
-
+  const itemsList = [...position, ...newPosition];
+  console.log(itemsList, '@@@@itemlist');
   return (
-    <React.Fragment>
+    <Wrapper>
       <div>
-        <h1>안녕</h1>
-        {annotationsToDraw.map((item) => {
+        {itemsList.map((item, index) => {
           return (
-            <div key={item.key}>
-              <li>{item.minji}</li>
-            </div>
+            <ul key={item.key}>
+              <li>{item.text}</li>
+            </ul>
           );
         })}
       </div>
       <Stage
-        width={700}
-        height={700}
+        width={900}
+        height={720}
         className="canvas"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
@@ -77,7 +36,7 @@ function Canvas() {
       >
         <BaseImage />
         <Layer>
-          {annotationsToDraw.map((value) => {
+          {itemsList.map((value) => {
             return (
               <Group key={value.key}>
                 <Rect
@@ -86,23 +45,27 @@ function Canvas() {
                   y={value.y}
                   width={value.width}
                   height={value.height}
-                  fill="transparent"
-                  stroke="black"
+                  fill="rgba(0, 0, 0, 0.1)"
+                  stroke="#343a40"
+                  strokeWidth="1"
                 />
                 <Text
                   x={value.x}
                   y={value.y}
                   width={value.width}
                   height={value.height}
-                  verticalAlign="middle"
-                  text={value.minji}
+                  verticalAlign="top"
+                  text={value.text}
+                  fontSize={15}
+                  fontStyle="bold"
+                  padding="10"
                 />
               </Group>
             );
           })}
         </Layer>
       </Stage>
-    </React.Fragment>
+    </Wrapper>
   );
 }
 

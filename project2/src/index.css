@@ -2,8 +2,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: Arial;
-  color: black;
-  background-color: whitesmoke;
+  color: white;
+  background-color: #343a40;
   width: 100vw;
 }
 
@@ -13,43 +13,14 @@ body {
   box-sizing: border-box;
 }
 
-h2 {
+h1 {
   text-align: center;
 }
-
-.description {
-  text-align: center;
+li {
+  list-style: none;
 }
-
-.App {
-  display: flex;
-  justify-content: space-around;
-}
-
-input {
-  transform: translateY(3px);
-  width: 100px;
-  margin-left: 10px;
-}
-
-.left-panel {
-  width: 400px;
-  padding: 10px;
-}
-
-.region {
-  padding: 5px;
-  margin: 5px;
-  border-radius: 3px;
-  box-shadow: 0 0 3px grey;
-}
-
-.region button {
-  float: right;
-}
-
-.right-panel {
-  width: calc(100vw - 400px);
-  margin: 10px;
-  position: relative;
+input,
+button {
+  outline: none;
+  border: none;
 }
