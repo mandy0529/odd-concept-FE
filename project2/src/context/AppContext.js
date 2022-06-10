@@ -23,6 +23,7 @@ const AppProvider = ({ children }) => {
 
   // position setting
   const handleMouseDown = (event) => {
+    console.log(event, 'mouse down event')
     if (newPosition.length === 0) {
       const { x, y } = event.target.getStage().getPointerPosition()
       setNewPosition([{ x, y, width: 0, height: 0, key: '0' }])
@@ -35,7 +36,7 @@ const AppProvider = ({ children }) => {
       const sx = newPosition[0].x
       const sy = newPosition[0].y
       const { x, y } = event.target.getStage().getPointerPosition()
-
+      console.log(newPosition.length, '@@@@ new position length')
       setNewPosition([
         {
           x: sx,
